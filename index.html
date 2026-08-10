@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boilers | Pure • Natural • Flavorful Spices</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Brand Logo Colors */
+            --brand-red: #D33820;
+            --brand-yellow: #EAA81D;
+            --brand-green: #597B3C;
+            --brand-cream: #FFFDF9;
+            
+            /* Bright Luxury Surfaces */
+            --bg-bright: #FAF6EF;
+            --bg-surface: #FFFFFF;
+            --bg-card: #FFFFFF;
+            
+            /* Text & Accent Details */
+            --text-dark: #221E1B;
+            --text-muted: #6B635B;
+            --border-amber: rgba(234, 168, 29, 0.3);
+            --border-subtle: rgba(0, 0, 0, 0.06);
+            --glass-bg: rgba(255, 253, 249, 0.9);
+            --shadow-soft: 0 12px 32px rgba(211, 56, 32, 0.08);
+            --shadow-hover: 0 20px 40px rgba(211, 56, 32, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-bright);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Ambient Glow Highlights */
+        .ambient-glow-yellow {
+            position: absolute;
+            top: 5%;
+            right: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(234, 168, 29, 0.18) 0%, rgba(250, 246, 239, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .ambient-glow-red {
+            position: absolute;
+            top: 35%;
+            left: -5%;
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(211, 56, 32, 0.12) 0%, rgba(250, 246, 239, 0) 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Header Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-amber);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+        }
+
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo-wrap {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .main-logo-img {
+            height: 52px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--brand-red);
+        }
+
+        .btn-bright-cart {
+            background: var(--brand-red);
+            color: white;
+            border: none;
+            padding: 0.65rem 1.6rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(211, 56, 32, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .btn-bright-cart:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(211, 56, 32, 0.35);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            padding: 9.5rem 2rem 5rem;
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tagline {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--brand-green);
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1.2rem;
+            background: rgba(89, 123, 60, 0.1);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .hero-title .highlight-red { color: var(--brand-red); }
+        .hero-title .highlight-yellow { color: var(--brand-yellow); }
+
+        .hero-desc {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            max-width: 520px;
+            margin-bottom: 2.5rem;
+            font-weight: 500;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .btn-primary-red {
+            background: linear-gradient(135deg, var(--brand-red), #B82B14);
+            color: white;
+            padding: 1rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.85rem;
+            text-decoration: none;
+            box-shadow: 0 10px 25px rgba(211, 56, 32, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-red:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(211, 56, 32, 0.45);
+        }
+
+        .btn-outline-green {
+            color: var(--brand-green);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 1rem 2rem;
+            border: 2px solid var(--brand-green);
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+
+        .btn-outline-green:hover {
+            background: var(--brand-green);
+            color: white;
+            box-shadow: 0 10px 20px rgba(89, 123, 60, 0.25);
+        }
+
+        /* Hero Stage Visual */
+        .stage-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .orbital-ring {
+            position: absolute;
+            width: 440px;
+            height: 440px;
+            border: 2px dashed var(--border-amber);
+            border-radius: 50%;
+            animation: spin 40s linear infinite;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+
+        .hero-card-bright {
+            width: 380px;
+            background: var(--bg-surface);
+            border: 2px solid var(--border-amber);
+            border-radius: 32px;
+            padding: 3rem 2rem;
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-logo-img {
+            max-width: 260px;
+            height: auto;
+            margin-bottom: 1.8rem;
+            filter: drop-shadow(0 6px 12px rgba(0,0,0,0.06));
+        }
+
+        .spice-badge {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--brand-yellow);
+            border-bottom: 2px solid var(--bg-bright);
+            padding-bottom: 0.8rem;
+            width: 100%;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-slogan {
+            font-weight: 800;
+            font-size: 0.95rem;
+            letter-spacing: 0.12em;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .hero-slogan .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+        }
+
+        /* Quality Pillars */
+        .quality-strip {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 3.5rem 0;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+        }
+
+        .strip-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .strip-item {
+            text-align: center;
+            border-right: 1px solid var(--border-subtle);
+            padding-right: 2rem;
+        }
+
+        .strip-item:last-child {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        .strip-item.pure h3 { color: var(--brand-green); }
+        .strip-item.natural h3 { color: var(--brand-yellow); }
+        .strip-item.flavorful h3 { color: var(--brand-red); }
+
+        .strip-item h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .strip-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Essential Spices Section */
+        .showcase {
+            max-width: 1300px;
+            margin: 7rem auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title-wrap {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title-wrap h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-title-wrap p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 500;
+        }
+
+        .spice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 2rem;
+        }
+
+        .spice-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 2.2rem 1.6rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .spice-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+        }
+
+        .spice-card.card-turmeric::before { background: var(--brand-yellow); }
+        .spice-card.card-chilli::before { background: var(--brand-red); }
+        .spice-card.card-coriander::before { background: var(--brand-green); }
+        .spice-card.card-garam::before { background: linear-gradient(90deg, var(--brand-red), var(--brand-yellow)); }
+
+        .spice-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .spice-icon-box {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: var(--bg-bright);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+
+        .spice-origin {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .spice-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .spice-notes {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.8rem;
+            min-height: 42px;
+            font-weight: 500;
+        }
+
+        .spice-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .spice-price {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-dark);
+        }
+
+        .btn-add-spice {
+            background: var(--bg-bright);
+            border: 2px solid var(--text-dark);
+            color: var(--text-dark);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-add-spice:hover {
+            background: var(--text-dark);
+            color: white;
+        }
+
+        /* Bright Process Banner */
+        .banner {
+            max-width: 1300px;
+            margin: 8rem auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .banner-card {
+            background: linear-gradient(135deg, #FFFFFF, #FFFDF8);
+            border: 2px solid var(--border-amber);
+            border-radius: 32px;
+            padding: 4rem 3.5rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            align-items: center;
+            gap: 3rem;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .banner-card h2 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .banner-card p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .banner-stat {
+            background: var(--bg-bright);
+            border: 1px solid var(--border-amber);
+            padding: 2.5rem;
+            border-radius: 24px;
+            text-align: center;
+        }
+
+        .banner-stat .num {
+            font-size: 3.8rem;
+            font-weight: 800;
+            color: var(--brand-red);
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-subtle);
+            padding: 5rem 2rem 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand .footer-logo-img {
+            max-height: 48px;
+            width: auto;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 320px;
+            font-weight: 500;
+        }
+
+        .footer-title {
+            color: var(--brand-red);
+            font-size: 0.85rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--brand-red);
+        }
+
+        .bottom-bar {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-subtle);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 900px) {
+            .hero, .banner-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-actions {
+                justify-content: center;
+            }
+            .strip-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .strip-item {
+                border-right: none;
+                border-bottom: 1px solid var(--border-subtle);
+                padding-right: 0;
+                padding-bottom: 1.5rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Glow Highlights -->
+    <div class="ambient-glow-yellow"></div>
+    <div class="ambient-glow-red"></div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="brand-logo-wrap">
+                <img src="logo.png" alt="Boilers Logo" class="main-logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#collection">Essential Spices</a></li>
+                <li><a href="#purity">Purity Standard</a></li>
+                <li><a href="#process">Cold-Grinding</a></li>
+            </ul>
+            <button class="btn-bright-cart" onclick="addCart()">Cart (<span id="cart-val">0</span>)</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <div class="tagline">100% Farm-Sourced Ingredients</div>
+            <h1 class="hero-title">
+                Unrivaled <span class="highlight-red">Purity</span>.<br>
+                Extraordinary <span class="highlight-yellow">Flavor</span>.
+            </h1>
+            <p class="hero-desc">Single-origin essential spices carefully cured and cold-ground to retain natural essential oils, vibrant colors, and authentic taste.</p>
+            <div class="hero-actions">
+                <a href="#collection" class="btn-primary-red">Shop Kitchen Staples</a>
+                <a href="#purity" class="btn-outline-green">Purity Standard</a>
+            </div>
+        </div>
+        <div class="stage-container">
+            <div class="orbital-ring"></div>
+            <div class="hero-card-bright">
+                <div class="spice-badge">Est. Batch • Pure Grade</div>
+                <img src="logo.png" alt="Boilers Logo" class="hero-logo-img">
+                <div class="hero-slogan">
+                    <span style="color: var(--brand-green);">PURE</span>
+                    <span class="dot" style="background: var(--brand-yellow);"></span>
+                    <span style="color: var(--brand-yellow);">NATURAL</span>
+                    <span class="dot" style="background: var(--brand-red);"></span>
+                    <span style="color: var(--brand-red);">FLAVORFUL</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3 Pillars Section -->
+    <section class="quality-strip" id="purity">
+        <div class="strip-grid">
+            <div class="strip-item pure">
+                <h3>PURE</h3>
+                <p>100% unadulterated single-origin harvest with zero synthetic colors or fillers.</p>
+            </div>
+            <div class="strip-item natural">
+                <h3>NATURAL</h3>
+                <p>Sourced from sustainable spice gardens, preserving therapeutic natural oils.</p>
+            </div>
+            <div class="strip-item flavorful">
+                <h3>FLAVORFUL</h3>
+                <p>Cold-milled to lock in volatile aroma compounds for maximum culinary depth.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Essential Spices Collection -->
+    <section class="showcase" id="collection">
+        <div class="section-title-wrap">
+            <div class="tagline" style="justify-content: center; background: none; padding: 0;">Kitchen Essentials</div>
+            <h2>Everyday Staple Spices</h2>
+            <p>Uncompromising quality crafted for home kitchens and culinary perfection.</p>
+        </div>
+
+        <div class="spice-grid">
+            <!-- Haldi -->
+            <div class="spice-card card-turmeric">
+                <div class="card-header">
+                    <div class="spice-icon-box">🟡</div>
+                    <span class="spice-origin" style="color: var(--brand-yellow);">High Curcumin</span>
+                </div>
+                <h3 class="spice-name">Turmeric Powder (Haldi)</h3>
+                <p class="spice-notes">High-curcumin turmeric root providing a golden hue and warm earthy notes.</p>
+                <div class="spice-meta">
+                    <span class="spice-price">$4.99 / 200g</span>
+                    <button class="btn-add-spice" onclick="addCart()">Add +</button>
+                </div>
+            </div>
+
+            <!-- Red Chilli -->
+            <div class="spice-card card-chilli">
+                <div class="card-header">
+                    <div class="spice-icon-box">🌶️</div>
+                    <span class="spice-origin" style="color: var(--brand-red);">Sun-Dried</span>
+                </div>
+                <h3 class="spice-name">Red Chilli Powder</h3>
+                <p class="spice-notes">Sun-dried red chillies ground fine for a vivid red color and balanced heat.</p>
+                <div class="spice-meta">
+                    <span class="spice-price">$5.49 / 200g</span>
+                    <button class="btn-add-spice" onclick="addCart()">Add +</button>
+                </div>
+            </div>
+
+            <!-- Coriander -->
+            <div class="spice-card card-coriander">
+                <div class="card-header">
+                    <div class="spice-icon-box">🌿</div>
+                    <span class="spice-origin" style="color: var(--brand-green);">Slow-Roasted</span>
+                </div>
+                <h3 class="spice-name">Coriander Powder</h3>
+                <p class="spice-notes">Slow-roasted seeds ground to retain subtle citrus fragrance and floral sweetness.</p>
+                <div class="spice-meta">
+                    <span class="spice-price">$4.49 / 200g</span>
+                    <button class="btn-add-spice" onclick="addCart()">Add +</button>
+                </div>
+            </div>
+
+            <!-- Garam Masala -->
+            <div class="spice-card card-garam">
+                <div class="card-header">
+                    <div class="spice-icon-box">🟤</div>
+                    <span class="spice-origin" style="color: var(--brand-yellow);">Master Blend</span>
+                </div>
+                <h3 class="spice-name">Signature Garam Masala</h3>
+                <p class="spice-notes">An aromatic blend of 12 whole spices roasted and milled in small batches.</p>
+                <div class="spice-meta">
+                    <span class="spice-price">$6.99 / 150g</span>
+                    <button class="btn-add-spice" onclick="addCart()">Add +</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner Process Section -->
+    <section class="banner" id="process">
+        <div class="banner-card">
+            <div>
+                <h2>The Cold-Grinding Difference</h2>
+                <p>Industrial high-speed grinding generates excessive heat that burns off volatile essential oils. At Boilers, our slow cold-milling technology protects delicate aroma compounds, keeping every batch vibrant and fresh.</p>
+            </div>
+            <div class="banner-stat">
+                <span class="num">100%</span>
+                <span style="color: var(--text-muted); font-weight: 600; font-size: 0.95rem;">Natural Volatile Oils Retained</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <img src="logo.png" alt="Boilers Logo" class="footer-logo-img">
+                <p>Pure • Natural • Flavorful essential spices bringing authentic taste straight to your table.</p>
+            </div>
+            <div>
+                <h4 class="footer-title">Products</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Turmeric (Haldi)</a></li>
+                    <li><a href="#">Red Chilli Powder</a></li>
+                    <li><a href="#">Coriander Powder</a></li>
+                    <li><a href="#">Garam Masala</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Quality</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Sourcing Standards</a></li>
+                    <li><a href="#">Cold-Grind Tech</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Support</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Shipping Details</a></li>
+                    <li><a href="#">Store Locator</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom-bar">
+            &copy; 2026 Boilers Spice Co. All rights reserved. Pure • Natural • Flavorful.
+        </div>
+    </footer>
+
+    <script>
+        let count = 0;
+        function addCart() {
+            count++;
+            document.getElementById('cart-val').innerText = count;
+        }
+    </script>
+</body>
+</html>
