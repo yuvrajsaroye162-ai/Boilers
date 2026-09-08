@@ -23,11 +23,16 @@
     align-items: center;
   }
 
-  /* MAIN RESPONSIVE CONTAINER */
+  /* MAIN RESPONSIVE CONTAINER WITH BACKGROUND PICTURE PATTERN */
   .page-wrapper {
     width: 100%;
     min-height: 100vh;
-    background: #14294A;
+    background: 
+      /* Subtle dark overlay for readability */
+      linear-gradient(135deg, rgba(20, 41, 74, 0.94) 0%, rgba(13, 27, 50, 0.96) 100%),
+      /* Document Watermark Visual Pattern Background */
+      url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 100 100" opacity="0.06"><path fill="%23F7F2E4" d="M20 10h40l20 20v50H20z"/><circle cx="50" cy="50" r="15" fill="none" stroke="%23F7F2E4" stroke-width="2"/><path fill="%23F7F2E4" d="M30 30h20v4H30zm0 10h30v4H30zm0 10h20v4H30z"/></svg>');
+    background-repeat: repeat;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -36,7 +41,7 @@
     padding: clamp(16px, 4vw, 48px);
   }
 
-  /* Decorative Background Elements */
+  /* Decorative Background Shape */
   .bg-shape {
     position: absolute;
     left: -10%;
@@ -113,7 +118,7 @@
 
   @media (min-width: 850px) {
     .hero-grid {
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1.1fr 0.9fr;
     }
   }
 
@@ -165,66 +170,50 @@
     margin-top: 12px;
   }
 
-  /* VISUAL PREVIEW / IMAGE MOCKUP CARD */
-  .visual-card {
-    background: linear-gradient(145deg, #1D3A68 0%, #10223E 100%);
-    border: 1px solid rgba(247,242,228,0.2);
+  /* ---------- HERO DOCUMENT IMAGE CARD ---------- */
+  .document-hero-card {
+    position: relative;
     border-radius: 20px;
-    padding: 20px;
+    padding: 24px;
+    background: linear-gradient(135deg, rgba(240, 169, 61, 0.15) 0%, rgba(20, 41, 74, 0.6) 100%);
+    border: 1px solid rgba(240, 169, 61, 0.3);
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     display: flex;
     flex-direction: column;
-    gap: 12px;
-  }
-
-  .doc-badge-row {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-
-  .doc-tag {
-    background: rgba(240, 169, 61, 0.2);
-    border: 1px solid #F0A93D;
-    color: #F0A93D;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 4px 10px;
-    border-radius: 6px;
-    text-transform: uppercase;
-  }
-
-  .mock-doc-body {
-    background: #F7F2E4;
-    border-radius: 12px;
-    padding: 16px;
-    color: #14294A;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .mock-doc-icon {
-    width: 48px;
-    height: 48px;
-    background: #14294A;
-    border-radius: 10px;
-    display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+    min-height: 220px;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
   }
 
-  .mock-doc-text h4 {
-    font-size: 16px;
-    font-family: 'Fraunces', serif;
+  .document-illustration {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+    filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.3));
+  }
+
+  .floating-badge {
+    position: absolute;
+    bottom: 16px;
+    background: rgba(247, 242, 228, 0.95);
+    color: #14294A;
+    padding: 8px 16px;
+    border-radius: 30px;
     font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
   }
 
-  .mock-doc-text p {
-    font-size: 12px;
-    color: #555;
-    margin-top: 2px;
+  .badge-dot {
+    width: 8px;
+    height: 8px;
+    background: #2F6B47;
+    border-radius: 50%;
   }
 
   /* ---------- SERVICES PANEL ---------- */
@@ -302,7 +291,7 @@
     font-size: clamp(13px, 1.3vw, 17px);
   }
 
-  /* ---------- CTA SECTION ---------- */
+  /* ---------- CALL TO ACTION ZONE ---------- */
   .cta-zone {
     display: flex;
     flex-direction: column;
@@ -424,7 +413,7 @@
       <div class="trust-pill">100% Genuine Help</div>
     </div>
 
-    <!-- HERO SECTION WITH VISUAL MOCKUP -->
+    <!-- HERO SECTION WITH ATTENTION-GRABBING DOCUMENT PICTURE -->
     <div class="hero-grid">
       <div>
         <div class="headline-wrap">
@@ -434,20 +423,34 @@
         <p class="subline">Skip long queues. We assist with your official applications and paperwork from start to finish.</p>
       </div>
 
-      <!-- VISUAL EXPLANATION CARD (Visual replacement for images) -->
-      <div class="visual-card">
-        <div class="doc-badge-row">
-          <span class="doc-tag">Govt Services</span>
-          <span class="doc-tag">Fast Processing</span>
-        </div>
-        <div class="mock-doc-body">
-          <div class="mock-doc-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F7F2E4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-          </div>
-          <div class="mock-doc-text">
-            <h4>Doorstep Paperwork Help</h4>
-            <p>Hassle-free application handling</p>
-          </div>
+      <!-- VISUAL DOCUMENT GRAPHIC / HERO PICTURE -->
+      <div class="document-hero-card">
+        <svg class="document-illustration" viewBox="0 0 300 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Stacked Document Papers -->
+          <rect x="25" y="20" width="130" height="150" rx="8" fill="#E2D8BF" transform="rotate(-6 25 20)"/>
+          <rect x="50" y="15" width="130" height="150" rx="8" fill="#F7F2E4" transform="rotate(4 50 15)"/>
+          
+          <!-- Front Main ID / Document Card -->
+          <rect x="80" y="30" width="180" height="115" rx="10" fill="#14294A" stroke="#F0A93D" stroke-width="3"/>
+          <rect x="95" y="45" width="35" height="42" rx="4" fill="#F0A93D"/>
+          <!-- User Silhouette -->
+          <circle cx="112" cy="58" r="8" fill="#14294A"/>
+          <path d="M100 80c0-6 6-9 12-9s12 3 12 9" fill="#14294A"/>
+          <!-- Document Text Lines -->
+          <rect x="140" y="48" width="100" height="8" rx="2" fill="#F7F2E4"/>
+          <rect x="140" y="62" width="75" height="6" rx="2" fill="#F0A93D"/>
+          <rect x="140" y="74" width="90" height="5" rx="2" fill="rgba(247,242,228,0.5)"/>
+          <rect x="140" y="84" width="60" height="5" rx="2" fill="rgba(247,242,228,0.5)"/>
+          
+          <!-- Government Gold Emblem Stamp -->
+          <circle cx="230" cy="110" r="18" fill="#F0A93D"/>
+          <circle cx="230" cy="110" r="14" fill="none" stroke="#14294A" stroke-width="2" stroke-dasharray="3 2"/>
+          <path d="M225 110l3 3 7-7" stroke="#14294A" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+
+        <div class="floating-badge">
+          <span class="badge-dot"></span>
+          Official Paperwork Assistant
         </div>
       </div>
     </div>
